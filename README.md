@@ -1,1 +1,1 @@
-# An ugly Linux CLI tool can convert epub comics to pictures.
+# An ugly Linux CLI tool for converting epub comics to picture sequences.

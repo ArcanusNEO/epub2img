@@ -5,7 +5,6 @@
 # Compiler settings - Can be customized.
 CC = gcc
 CFLAGS = -std=gnu17 -Wall -Wextra -O3 -Isrc/inc
-CXXFLAGS = -std=gnu17 -Wall -Wextra -O3 -Isrc/inc
 LDFLAGS = 
 
 # Makefile settings - Can be customized.
@@ -34,7 +33,7 @@ all: $(APPNAME)
 
 # Builds the app
 $(APPNAME): $(OBJ)
-	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Creates the dependecy rules
 %.d: $(SRCDIR)/%$(EXT)
@@ -45,7 +44,7 @@ $(APPNAME): $(OBJ)
 
 # Building rule for .o files and its .c/.cpp in combination with all .h
 $(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 ################### Cleaning rules for Unix-based OS ###################
 # Cleans complete project
