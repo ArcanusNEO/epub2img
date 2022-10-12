@@ -12,8 +12,8 @@ signed main(int argc, char* argv[]) {
   srand(time(NULL)), rand(), rand(), rand(), rand();
   strcpy(in, ".");
   strcpy(out, "./out");
-  while (~(ch = getopt(argc, argv, "f:o:V"))) switch (ch) {
-      case 'f': strcpy(in, optarg); break;
+  while (~(ch = getopt(argc, argv, "i:o:V"))) switch (ch) {
+      case 'i': strcpy(in, optarg); break;
       case 'o': strcpy(out, optarg); break;
       case 'V': is_vol_moe_type = 1; break;
       default: break;
