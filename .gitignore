@@ -1,0 +1,5 @@
+.vscode/
+obj/
+out/
+*.d
+epub2img
