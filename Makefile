@@ -4,6 +4,7 @@
 
 # Compiler settings - Can be customized.
 CC = gcc
+CFLAGS = -std=gnu17 -Wall -Wextra -O3 -Isrc/inc
 CXXFLAGS = -std=gnu17 -Wall -Wextra -O3 -Isrc/inc
 LDFLAGS = 
 
