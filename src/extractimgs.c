@@ -21,10 +21,10 @@ const char _PNGSTR[] = "image/png";
 const char _IMGSTR[] = "imgsrc=\"";
 #define _IMGN 9
 
-void convert_epub(const char* __path, const char* __out, int __volMoe) {
+void convert_epub(const char* __path, const char* __out, int __vol_moe) {
   int   i, j;
-  char* path = malloc(sizeof(char) * _MAX_FILE_NAME);
-  char* cmd  = malloc(sizeof(char) * _MAX_CMD_LENGTH);
+  char* path = malloc(_MAX_FILE_NAME);
+  char* cmd  = malloc(_MAX_CMD_LENGTH);
 
   for (i = 0; "/tmp/"[i]; ++i) { path[i] = "/tmp/"[i]; }
   for (j = 0; j < 32; ++i, ++j) {
@@ -47,7 +47,7 @@ void convert_epub(const char* __path, const char* __out, int __volMoe) {
   strcat(cmd, "\"");
   system(cmd);
 
-  if (__volMoe) read_from_html(path, __out);
+  if (__vol_moe) read_from_html(path, __out);
   else read_from_opf(path, __out);
 
   strcpy(cmd, "rm -rf ");
@@ -61,10 +61,10 @@ void convert_epub(const char* __path, const char* __out, int __volMoe) {
 void read_from_opf(const char* __path, const char* __out) {
   FILE* fp;
   int   ch, i, j, k;
-  char* path   = malloc(sizeof(char) * _MAX_PATH_LENGTH);
-  char* buffer = malloc(sizeof(char) * _MAX_PATH_LENGTH);
-  char* cmd    = malloc(sizeof(char) * _MAX_CMD_LENGTH);
-  char* item   = malloc(sizeof(char) * _MAX_FILE_NAME);
+  char* path   = malloc(_MAX_PATH_LENGTH);
+  char* buffer = malloc(_MAX_PATH_LENGTH);
+  char* cmd    = malloc(_MAX_CMD_LENGTH);
+  char* item   = malloc(_MAX_FILE_NAME);
 
   strcpy(path, __path);
   strcat(path, "/META-INF/container.xml");
@@ -157,9 +157,9 @@ void read_from_html(const char* __path, const char* __out) {
   DIR*           dp;
   struct dirent* dirp;
   FILE*          fp;
-  char*          path = malloc(sizeof(char) * _MAX_PATH_LENGTH);
-  char*          ext  = malloc(sizeof(char) * _MAX_FILE_NAME);
-  char*          cmd  = malloc(sizeof(char) * _MAX_CMD_LENGTH);
+  char*          path = malloc(_MAX_PATH_LENGTH);
+  char*          ext  = malloc(_MAX_FILE_NAME);
+  char*          cmd  = malloc(_MAX_CMD_LENGTH);
   int            ch, i, j, k;
 
   strcpy(path, __path);
@@ -189,7 +189,7 @@ void read_from_html(const char* __path, const char* __out) {
           for (j = i = 0; __path[i - j]; ++i) path[i] = __path[i - j];
           for (j = i; "/html/"[i - j]; ++i) path[i] = "/html/"[i - j];
           for (ch = fgetc(fp); ~ch && ch != '\"'; ch = fgetc(fp), ++i) {
-            if (ch == '{') goto LFinishMv;
+            if (ch == '{') goto L0;
             path[i] = ch;
           }
           path[i] = '\0';
@@ -210,7 +210,7 @@ void read_from_html(const char* __path, const char* __out) {
           // puts(cmd);
           system(cmd);
 
-LFinishMv:
+L0:
           i = j = k = -1;
         }
       } else i = -1;
