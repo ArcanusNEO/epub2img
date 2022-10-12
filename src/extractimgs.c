@@ -243,6 +243,3 @@ LFinishMv:
   free(ext);
   free(cmd);
 }
-
-const char* inflate_epub(const char* __path) {
-}
