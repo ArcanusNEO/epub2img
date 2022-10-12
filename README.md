@@ -1,1 +1,1 @@
-# epub漫画转换为图片格式的命令行工具
+# An ugly Linux CLI tool can convert epub comics to pictures.
